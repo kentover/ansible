@@ -1,0 +1,32 @@
+#How start to use ansible
+
+#create ansible directory
+
+mkdir ansible
+
+#create hosts.txt file
+
+cd ansible
+touch hosts.txt
+nano hosts.txt
+
+#add hosts to hosts.txt
+
+[linux_servers]
+jenkins_agent ansible_host=192.168.1.11 ansible_user=kentover ansible_ssh_private_key_file=/home/kentover/.ssh/ansible.private
+ansible_agent ansible_host=192.168.1.26 ansible_user=kentover ansible_ssh_private_key_file=/home/kentover/.ssh/ansible.private
+
+#How turn off question about the 1st login
+
+touch ansible.cfg
+nano ansible.cfg
+
+#input config
+
+[defaults]
+host_key_checking = false
+inventory         = ./hosts.txt
+
+#Check connection to servers
+
+ansible all -m ping
